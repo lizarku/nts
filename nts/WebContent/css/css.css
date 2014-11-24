@@ -7,6 +7,9 @@ font-family: helvetica,AppleSDGothicNeo,sans-serif;
 font-size: 16px;
 line-height: 1.25em;
 }
+a{
+	text-decoration:none; 
+}
 .nc, hr, .js_hide, .display_n {
 display: none !important;
 }

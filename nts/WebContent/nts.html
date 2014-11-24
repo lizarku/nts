@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/css.css">
 <title>네이버 환율</title>
+<script type="text/javascript">
+$(document).ready(function(){ 
+   
+    $('#num').keypress(function(event) {
+        if(event.which && (event.which < 48 || event.which > 57) ) {
+            event.preventDefault();
+        }
+    }).keyup(function(){
+        if( $(this).val() != null && $(this).val() != '' ) {
+            var tmps = $(this).val().replace(/[^0-9]/g, '');
+            var tmps2 = tmps.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            $(this).val(tmps2);
+            var a = tmps;
+            var b = ($("#ecg_ifmt option:selected").val().replace(/,/g, '')*tmps)/$("#ecg_ifmt2 option:selected").val().replace(/,/g, '');
+            $("#num2").val(b.toFixed(2));
+    }
+    });
+});
+</script>
 </head>
 <body>
 	<div class="sc">
@@ -13,11 +35,10 @@
 				<div class="excr_cal">
 					<div class="excr_box _exchr_cal_inp">
 						<div class="slc_box">
-							<label for="ecg_ifmt" class="nc">환율을 계산할 국가를 선택</label> <select
-								class="nt_slc" id="ecg_ifmt"
-								onchange="goOtherCR(this, 'a=drt_exc.crtl&amp;r=1&amp;i=0000009d_00001574927e&amp;u='+'javascript');">
+							<label for="ecg_ifmt" class="nc">환율을 계산할 국가를 선택</label> 
+							<select class="nt_slc" id="ecg_ifmt">
 								<option value="1" data-unit="KRW">대한민국</option>
-								<option value="1,113.50" selected="" data-unit="USD">미국</option>
+								<option value="1,113.50" data-unit="USD" selected="selected">미국</option>
 								<option value="9.4165" data-unit="JPY">일본</option>
 								<option value="1,377.96" data-unit="EUR">유럽연합</option>
 								<option value="181.10" data-unit="CNY">중국</option>
@@ -64,8 +85,9 @@
 							</select> <span class="flag usd"></span> <span class="nt_eng _unit">USD</span>
 						</div>
 						<div class="num">
-							<label for="num" class="nc">환율을 변환하는 국가를 선택</label> <input
-								id="num" type="text" maxlength="" value="0" class="_before_cal">
+							<label for="num" class="nc">환율을 변환하는 국가를 선택</label> 
+							<input
+								id="num" type="text" maxlength="" value="0" class="_before_cal" onclick="if($(this).val()=='0'){$(this).val('')}">
 							<div class="recite">
 								<span class="nb_txt _l_unit">0 달러</span>
 							</div>
@@ -76,7 +98,8 @@
 					</div>
 					<div class="excr_box _exchr_cal_inp" queryid="C1416833096993419447">
 						<div class="slc_box">
-							<label for="ecg_ifmt2" class="nc">환율을 변환하는 국가를 선택</label> <select
+							<label for="ecg_ifmt2" class="nc">환율을 변환하는 국가를 선택</label> 
+							<select
 								class="nt_slc" id="ecg_ifmt2"
 								onchange="goOtherCR(this, 'a=drt_exc.crtr&amp;r=1&amp;i=0000009d_00001574927e&amp;u='+'javascript');">
 								<option value="1" selected="" data-unit="KRW">대한민국</option>
@@ -127,9 +150,9 @@
 							</select> <span class="flag krw"></span> <span class="nt_eng _unit">KRW</span>
 						</div>
 						<div class="num">
-							<label for="num2" class="nc">환율을 변환하는 국가를 선택</label> <input
-								id="num2" type="text" maxlength="" value="1,097.50"
-								class="_before_cal">
+							<label for="num2" class="nc">환율을 변환하는 국가를 선택</label> 
+							<input
+								id="num2" type="text" maxlength="" value="" class="_before_cal">
 							<div class="recite">
 								<span class="nb_txt _r_unit">0.00 원</span>
 							</div>
