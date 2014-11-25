@@ -32,6 +32,39 @@ $(document).ready(function(){
     });
 });
 </script>
+<script type="text/javascript">
+function selc2(){
+	 var tmps = $("#num").val().replace(/[^0-9]/g, '');
+     var tmps2 = tmps.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+     $("#num").val(tmps2);
+     var tmp3 = ($("#ecg_ifmt option:selected").val().replace(/,/g, '')*tmps)/$("#ecg_ifmt2 option:selected").val().replace(/,/g, '');
+     if(tmp3!='0'){
+     	$("#num2").val(tmp3.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+     }else{
+     	$("#num").val('');
+     }
+}
+function selc1(){
+	var tmps = $("#num2").val().replace(/[^0-9]/g, '');
+    var tmp3 = ($("#ecg_ifmt2 option:selected").val().replace(/,/g, '')*tmps)/$("#ecg_ifmt2 option:selected").val().replace(/,/g, '');
+    if(tmp3!='0'){
+    	$("#num").val('');
+    	$("#num").val(tmp3.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+    }else{
+    	$("#num2").val('0');
+    }
+}
+function selc2(){
+   var tmps = $("#num").val().replace(/[^0-9]/g, '');
+   var tmp3 = ($("#ecg_ifmt option:selected").val().replace(/,/g, '')*tmps)/$("#ecg_ifmt2 option:selected").val().replace(/,/g, '');
+   if(tmp3!='0'){
+	$("#num2").val('');
+   	$("#num2").val(tmp3.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+   }else{
+   	$("#num").val('0');
+   }
+}
+</script>
 </head>
 <body>
 	<div class="sc">
@@ -42,7 +75,7 @@ $(document).ready(function(){
 					<div class="excr_box _exchr_cal_inp">
 						<div class="slc_box">
 							<label for="ecg_ifmt" class="nc">환율을 계산할 국가를 선택</label> 
-							<select class="nt_slc" id="ecg_ifmt">
+							<select class="nt_slc" id="ecg_ifmt" onchange="selc1()">
 								<option value="1" data-unit="KRW">대한민국</option>
 								<option value="1,113.50" data-unit="USD" selected="selected">미국</option>
 								<option value="9.4165" data-unit="JPY">일본</option>
@@ -106,8 +139,7 @@ $(document).ready(function(){
 						<div class="slc_box">
 							<label for="ecg_ifmt2" class="nc">환율을 변환하는 국가를 선택</label> 
 							<select
-								class="nt_slc" id="ecg_ifmt2"
-								onchange="goOtherCR(this, 'a=drt_exc.crtr&amp;r=1&amp;i=0000009d_00001574927e&amp;u='+'javascript');">
+								class="nt_slc" id="ecg_ifmt2" onchange="selc2()">
 								<option value="1" selected="" data-unit="KRW">대한민국</option>
 								<option value="1,113.50" data-unit="USD">미국</option>
 								<option value="9.4165" data-unit="JPY">일본</option>
