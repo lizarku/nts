@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/css.css">
-<title>네이버 환율</title>
+<title>네이버 환율1212</title>
 <script type="text/javascript">
 $(document).ready(function(){ 
    
@@ -19,52 +19,14 @@ $(document).ready(function(){
             var tmps = $(this).val().replace(/[^0-9]/g, '');
             var tmps2 = tmps.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
             $(this).val(tmps2);
-            var tmp3 = ($("#ecg_ifmt option:selected").val().replace(/,/g, '')*tmps)/$("#ecg_ifmt2 option:selected").val().replace(/,/g, '');
-            if(tmp3!='0'){
-            	$("#num2").val(tmp3.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-            }else{
-            	$("#num").val('');
-            }
- 	   }else{
- 		  $("#num2").val('0');
- 		  $("#num").val('0');
- 	   }
+            var a = tmps;
+            var b = ($("#ecg_ifmt option:selected").val().replace(/,/g, '')*tmps)/$("#ecg_ifmt2 option:selected").val().replace(/,/g, '');
+            $("#num2").val(b.toFixed(2));
+    }
     });
 });
 </script>
-<script type="text/javascript">
-function selc2(){
-	 var tmps = $("#num").val().replace(/[^0-9]/g, '');
-     var tmps2 = tmps.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-     $("#num").val(tmps2);
-     var tmp3 = ($("#ecg_ifmt option:selected").val().replace(/,/g, '')*tmps)/$("#ecg_ifmt2 option:selected").val().replace(/,/g, '');
-     if(tmp3!='0'){
-     	$("#num2").val(tmp3.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-     }else{
-     	$("#num").val('');
-     }
-}
-function selc1(){
-	var tmps = $("#num2").val().replace(/[^0-9]/g, '');
-    var tmp3 = ($("#ecg_ifmt2 option:selected").val().replace(/,/g, '')*tmps)/$("#ecg_ifmt2 option:selected").val().replace(/,/g, '');
-    if(tmp3!='0'){
-    	$("#num").val('');
-    	$("#num").val(tmp3.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-    }else{
-    	$("#num2").val('0');
-    }
-}
-function selc2(){
-   var tmps = $("#num").val().replace(/[^0-9]/g, '');
-   var tmp3 = ($("#ecg_ifmt option:selected").val().replace(/,/g, '')*tmps)/$("#ecg_ifmt2 option:selected").val().replace(/,/g, '');
-   if(tmp3!='0'){
-	$("#num2").val('');
-   	$("#num2").val(tmp3.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-   }else{
-   	$("#num").val('0');
-   }
-}
-</script>
+<!-- 브런치 테스트1 - ntsntttt -->
 </head>
 <body>
 	<div class="sc">
@@ -75,7 +37,7 @@ function selc2(){
 					<div class="excr_box _exchr_cal_inp">
 						<div class="slc_box">
 							<label for="ecg_ifmt" class="nc">환율을 계산할 국가를 선택</label> 
-							<select class="nt_slc" id="ecg_ifmt" onchange="selc1()">
+							<select class="nt_slc" id="ecg_ifmt">
 								<option value="1" data-unit="KRW">대한민국</option>
 								<option value="1,113.50" data-unit="USD" selected="selected">미국</option>
 								<option value="9.4165" data-unit="JPY">일본</option>
@@ -126,7 +88,7 @@ function selc2(){
 						<div class="num">
 							<label for="num" class="nc">환율을 변환하는 국가를 선택</label> 
 							<input
-								id="num" type="text" maxlength="12" value="0" class="_before_cal" onclick="if($(this).val()=='0'){$(this).val('')}">
+								id="num" type="text" maxlength="" value="0" class="_before_cal" onclick="if($(this).val()=='0'){$(this).val('')}">
 							<div class="recite">
 								<span class="nb_txt _l_unit">0 달러</span>
 							</div>
@@ -139,7 +101,8 @@ function selc2(){
 						<div class="slc_box">
 							<label for="ecg_ifmt2" class="nc">환율을 변환하는 국가를 선택</label> 
 							<select
-								class="nt_slc" id="ecg_ifmt2" onchange="selc2()">
+								class="nt_slc" id="ecg_ifmt2"
+								onchange="goOtherCR(this, 'a=drt_exc.crtr&amp;r=1&amp;i=0000009d_00001574927e&amp;u='+'javascript');">
 								<option value="1" selected="" data-unit="KRW">대한민국</option>
 								<option value="1,113.50" data-unit="USD">미국</option>
 								<option value="9.4165" data-unit="JPY">일본</option>
@@ -190,7 +153,7 @@ function selc2(){
 						<div class="num">
 							<label for="num2" class="nc">환율을 변환하는 국가를 선택</label> 
 							<input
-								id="num2" type="text" maxlength="12" value="0" class="_before_cal">
+								id="num2" type="text" maxlength="" value="" class="_before_cal">
 							<div class="recite">
 								<span class="nb_txt _r_unit">0.00 원</span>
 							</div>
